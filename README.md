@@ -21,3 +21,8 @@
     <li>PHPUnit</li>
     <li>Page 404</li>
 </ul>
+
+<h2>Remarques</h2>
+<ul>
+    <li>config.php est le fichier servant à stocker toute la configuration du projet, il ne faut pas l'envoyer sur github</li>
+</ul>
