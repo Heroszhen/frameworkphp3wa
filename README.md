@@ -20,6 +20,13 @@
     <li>JQuery</li>
     <li>PHPUnit</li>
     <li>Page 404</li>
+    <li>
+        Services:
+        <ul>
+            <li>Convertir un objet en array</li>
+            <li>Verification de mot de passe</li>
+        </ul>
+    </li>
 </ul>
 
 <h2>Remarques</h2>
