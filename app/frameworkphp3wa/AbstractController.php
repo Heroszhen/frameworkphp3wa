@@ -4,9 +4,11 @@ namespace Frameworkphp3wa;
 
 use App\Entity\Article;
 use Twig;
+use Frameworkphp3wa\FlashBag;
 
 abstract class AbstractController{
     protected $twig;
+    private $flashbag;
 
     public function __construct() {
         $loader = new Twig\Loader\FilesystemLoader(Dirname(Dirname(__DIR__)).'/templates'); 
@@ -15,6 +17,8 @@ abstract class AbstractController{
         ]);
         $twig->addGlobal('session', $_SESSION);
         $this->twig = $twig;
+
+        $this->flashbag = new FlashBag();
     }
 
     public function render($file,$arguments){

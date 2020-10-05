@@ -16,6 +16,8 @@ class HomeController extends AbstractController{
         ]);
     }
     public function index2($id){
-        var_dump($id);
+        header('Content-type:application/json;charset=utf-8');
+        http_response_code(200);
+        echo json_encode([$id,1]);
     }
 }
