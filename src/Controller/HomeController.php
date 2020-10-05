@@ -15,4 +15,7 @@ class HomeController extends AbstractController{
             "flash" => $flash->get()
         ]);
     }
+    public function index2($id){
+        var_dump($id);
+    }
 }

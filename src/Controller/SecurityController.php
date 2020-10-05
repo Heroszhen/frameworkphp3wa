@@ -10,6 +10,6 @@ class SecurityController extends AbstractController{
      * route not found
      */
     public function index(){
-        return ["security.index.twig",[]];
+        return $this->render("security.index.twig",[]);
     }
 }

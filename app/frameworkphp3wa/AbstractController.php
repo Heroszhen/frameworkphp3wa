@@ -3,12 +3,17 @@
 namespace Frameworkphp3wa;
 
 use App\Entity\Article;
-use Twig\Environment as Twig;
+use Twig;
 
 abstract class AbstractController{
     protected $twig;
 
-    public function __construct(Twig $twig) {
+    public function __construct() {
+        $loader = new Twig\Loader\FilesystemLoader(Dirname(Dirname(__DIR__)).'/templates'); 
+        $twig = new Twig\Environment($loader, [
+            'cache' => false,
+        ]);
+        $twig->addGlobal('session', $_SESSION);
         $this->twig = $twig;
     }
 
