@@ -26,13 +26,23 @@ class Router{
         if($routeInfo[0] == FastRoute\Dispatcher::NOT_FOUND || $routeInfo[0] == FastRoute\Dispatcher::METHOD_NOT_ALLOWED){
             header('HTTP/1.0 404 Not Found');
             $security = new SecurityController();
-            $response = $security->index();
-            //echo $twig->render($response[0], ["parameters"=>$response[1]]); 
+            $security->index(); 
         }elseif($routeInfo[0] == FastRoute\Dispatcher::FOUND) { 
+            echo "<pre>";
+            var_dump($routeInfo);
+            echo "</pre>";
+            $parameters = [];
+            //récupérer les paramètres passés dans l'url
             foreach ($routeInfo[2] as $key => $value) {
-               array_push($routeInfo[1][2],$value);
+               array_push($parameters,$value);
             }
-            call_user_func_array(array($routeInfo[1][0], $routeInfo[1][1]),$routeInfo[1][2]);
+            /**
+             * call_user_func_array : Appelle une fonction de rappel avec les paramètres rassemblés en tableau
+             * $routeInfo[1][0] : class(controller)
+             * $routeInfo[1][1] : methode
+             * $routeInfo[1][0] : paramètres
+             */
+            call_user_func_array(array($routeInfo[1][0], $routeInfo[1][1]),$parameters);
         }
     }
 }
