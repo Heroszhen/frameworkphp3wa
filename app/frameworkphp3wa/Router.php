@@ -32,7 +32,7 @@ class Router{
             var_dump($routeInfo);
             echo "</pre>";
             $parameters = [];
-            //récupérer les paramètres passés dans l'url
+            //récupérer les paramètres passés dans l'url : /article/1 -> 1: paramètre
             foreach ($routeInfo[2] as $key => $value) {
                array_push($parameters,$value);
             }
