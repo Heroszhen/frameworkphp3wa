@@ -20,7 +20,7 @@ abstract class AbstractRepository{
 		}
 		//global $pdo; // globalisation de $pdo
 
-		$r = $this->db->prepare($req);
+		$r = $this->pdo->prepare($req);
 		$r->execute($params);
 		if( !empty($r->errorInfo()[2]) ){
 			die('Erreur rencontrée lors de la requête : '.$r->errorInfo()[2]);
