@@ -3,17 +3,23 @@
 namespace Frameworkphp3wa;
 
 use App\Entity\Article;
-use Twig\Environment as Twig;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 abstract class AbstractController{
-    protected $twig;
+    private $templateEngine;
 
-    public function __construct(Twig $twig) {
-        $this->twig = $twig;
+    public function __construct() {
+        $loader = new FilesystemLoader(dirname(__DIR__, 2) . '/templates');
+        $twig = new Environment($loader, [
+            'cache' => false,
+        ]);
+        $twig->addGlobal('session', $_SESSION);
+        $this->templateEngine = $twig;
     }
 
-    public function render($file,$arguments){
-        echo $this->twig->render($file, $arguments); 
+    public function render($file,$arguments=[]){
+        echo $this->templateEngine->render($file, $arguments);
     }
 
     public function Toredirect($url){

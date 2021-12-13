@@ -9,15 +9,9 @@ use Twig;
 
 class Kernel{
     public function run(){
-        $loader = new Twig\Loader\FilesystemLoader(Dirname(Dirname(__DIR__)).'/templates'); 
-        $twig = new Twig\Environment($loader, [
-            'cache' => false,
-        ]);
-        $twig->addGlobal('session', $_SESSION);
-        
         $router = new Router();
-        $dispatcher = $router->setRoutes($twig);
-        $router->getRouter($twig,$dispatcher);
+        $dispatcher = $router->setRoutes();
+        $router->getRouter($dispatcher);
     }
 
     public function getPDO(){
