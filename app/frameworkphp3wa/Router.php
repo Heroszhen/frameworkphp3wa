@@ -28,13 +28,16 @@ class Router{
             $security = new SecurityController();
             $security->index(); 
         }elseif($routeInfo[0] == FastRoute\Dispatcher::FOUND) { 
+            /*
             echo "<pre>";
             var_dump($routeInfo);
-            echo "</pre>";
-            $parameters = [];
+            echo "</pre>";*/
+
+            //contient $_POST
+            $routeInfo[1][2] = (!isset($routeInfo[1][2]) || $routeInfo[1][2] == null)?[]:$routeInfo[1][2];
             //récupérer les paramètres passés dans l'url : /article/1 -> 1: paramètre
             foreach ($routeInfo[2] as $key => $value) {
-               array_push($parameters,$value);
+               array_push($routeInfo[1][2],$value);
             }
             /**
              * call_user_func_array : Appelle une fonction de rappel avec les paramètres rassemblés en tableau
@@ -42,7 +45,7 @@ class Router{
              * $routeInfo[1][1] : methode
              * $routeInfo[1][0] : paramètres
              */
-            call_user_func_array(array($routeInfo[1][0], $routeInfo[1][1]),$parameters);
+            call_user_func_array(array($routeInfo[1][0], $routeInfo[1][1]),$routeInfo[1][2]);
         }
     }
 }

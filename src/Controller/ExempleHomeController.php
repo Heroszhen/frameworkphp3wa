@@ -7,10 +7,10 @@ use Frameworkphp3wa\FlashBag;
 
 class ExempleHomeController extends AbstractController{
 
-    public function index(){
-        $flash = new FlashBag();
+    public function index($id){
+        $flash = new FlashBag($id);
         $flash->empty();
-        $flash->set("exemple flashbag message","info");
+        $flash->set("exemple flashbag message : ".$id, "info");
         return $this->render("exemplehome.index.twig",[
             "flash" => $flash->get()
         ]);
